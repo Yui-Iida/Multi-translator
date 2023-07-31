@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../img/favicon.png" />
+    <link href="/dist/output.css" rel="stylesheet" />
+    <!-- <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script> -->
+    <title>Multi Translator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="w-screen">
+        <header class="bg-black h-16">
+          <p class="text-white">HEADER</p>
+        </header>
+        <div class="flex">
+          <div class="bg-green-600 h-screen w-2/4">
+            <div class="m-20 flex flex-col items-center">
+              <h1 class="text-3xl text-white font-semibold font-poppins mb-6">
+                ENGLISH
+              </h1>
+
+              <textarea
+                type="text"
+                id="translationTextarea"
+                class="block w-full h-auto p-2.5 mb-4 font-poppins rounded-lg resize-none"
+              ></textarea>
+              <p class="errorMessage"></p>
+              <button
+                class="translateButton w-32 bg-stone-300 text-black rounded-md py-2 px-4 font-poppins hover:bg-black hover:text-white"
+              >
+                Translate
+              </button>
+            </div>
+          </div>
+          <div class="bg-stone-300 w-2/4">
+            <div class="m-10">
+              <div class="output1">
+                <h1
+                  class="text-3xl text-green-600 font-semibold font-poppins mb-4"
+                >
+                  JAPANESE
+                </h1>
+                <p id="translation1" class="text-black font-poppins mb-8"></p>
+              </div>
+              <div class="output2">
+                <h1
+                  class="text-3xl text-green-600 font-semibold font-poppins mb-4"
+                >
+                  GERMAN
+                </h1>
+                <p id="translation2" class="text-black font-poppins mb-8"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
