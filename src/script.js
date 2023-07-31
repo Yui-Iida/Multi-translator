@@ -1,10 +1,15 @@
+// const dotenv = require("dotenv");
+// // .envファイルを現在の環境変数にロードする
+// const env = dotenv.config();
+// console.log(env.API_KEY);
 const API_KEY = "3ebf9f00-145a-b3af-c677-2095065faa45:fx";
+// console.log(apiKey);
 
 const textarea = document.querySelector("#translationTextarea");
 const translateButton = document.querySelector(".translateButton");
 const lang1 = document.querySelector("#translation1");
 const lang2 = document.querySelector("#translation2");
-// const targetLang = ["JA", "DE"];
+// const API_KEY = process.env.API_KEY;
 
 translateButton.addEventListener("click", () => {
   const inputText = textarea.value.trim();
