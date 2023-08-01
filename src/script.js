@@ -1,9 +1,4 @@
-// const dotenv = require("dotenv");
-// // .envファイルを現在の環境変数にロードする
-// const env = dotenv.config();
-// console.log(env.API_KEY);
 const API_KEY = "3ebf9f00-145a-b3af-c677-2095065faa45:fx";
-
 const textarea = document.querySelector("#translationTextarea");
 const translateButton = document.querySelector(".translateButton");
 const lang1 = document.querySelector("#translation1");
@@ -11,13 +6,14 @@ const lang2 = document.querySelector("#translation2");
 const originalContainer = document.querySelector(".originalContainer");
 const errorMessage = document.querySelector(".errorMessage");
 const switchMode = document.querySelector(".switchMode");
+let darkMode = false;
 
 translateButton.addEventListener("click", () => {
   const inputText = textarea.value.trim();
 
   if (inputText === "") {
     errorMessage.textContent = "Please input original text.";
-    errorMessage.style.color = "red";
+    errorMessage.style.color = "yellow";
     errorMessage.style.marginBottom = "10px";
     errorMessage.classList.add("font-poppins");
     return;
@@ -32,7 +28,7 @@ translateButton.addEventListener("click", () => {
     .then((data) => {
       console.log(data);
       if (data && data.translations) {
-        lang1.textContent = data.translations[0].text;
+        lang1.innerText = data.translations[0].text;
       } else {
         alert("Translation Failed.");
       }
@@ -50,8 +46,19 @@ translateButton.addEventListener("click", () => {
     .then((data) => {
       console.log(data);
       if (data && data.translations) {
-        lang2.textContent = data.translations[0].text;
-        originalContainer.style.height = "auto";
+        lang2.innerText = data.translations[0].text;
+
+        // Fix the height depend on the height of translatedContainer
+        const minHeight = window.innerHeight;
+        const translatedContainer = document.querySelector(
+          ".translatedContainer"
+        );
+        const translatedContainerHeight = translatedContainer.offsetHeight;
+        if (translatedContainerHeight > minHeight) {
+          originalContainer.style.height = "auto";
+        } else {
+          originalContainer.style.height = "100vh";
+        }
       } else {
         alert("Translation Failed.");
       }
@@ -72,7 +79,17 @@ function adjustTextareaHeight() {
 
 textarea.addEventListener("input", adjustTextareaHeight);
 
+////////////////////////////////
+// Switch dark/light mode
+
 switchMode.addEventListener("click", () => {
-  document.documentElement.classList.add("dark");
-  switchMode.textContent = "☀️";
+  if (!darkMode) {
+    document.documentElement.classList.add("dark");
+    switchMode.textContent = "☀️";
+    darkMode = true;
+  } else {
+    document.documentElement.classList.remove("dark");
+    switchMode.textContent = "☽";
+    darkMode = false;
+  }
 });
