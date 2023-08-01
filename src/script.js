@@ -1,4 +1,5 @@
-const API_KEY = "3ebf9f00-145a-b3af-c677-2095065faa45:fx";
+import { API_KEY } from "./config.js";
+
 const textarea = document.querySelector("#translationTextarea");
 const translateButton = document.querySelector(".translateButton");
 const lang1 = document.querySelector("#translation1");
