@@ -1,8 +1,12 @@
 // const dotenv = require("dotenv");
 // // .envファイルを現在の環境変数にロードする
 // const env = dotenv.config();
-// console.log(env.API_KEY);
-const API_KEY = "3ebf9f00-145a-b3af-c677-2095065faa45:fx";
+
+import { API_KEY } from "./config";
+console.log(API_KEY);
+console.log("API??");
+
+// const API_KEY = "3ebf9f00-145a-b3af-c677-2095065faa45:fx";
 // console.log(apiKey);
 
 const textarea = document.querySelector("#translationTextarea");
