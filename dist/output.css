@@ -578,6 +578,10 @@ video {
   margin: 5rem;
 }
 
+.m-0{
+  margin: 0px;
+}
+
 .mb-10{
   margin-bottom: 2.5rem;
 }
@@ -620,6 +624,14 @@ video {
 
 .h-screen{
   height: 100vh;
+}
+
+.h-full{
+  height: 100%;
+}
+
+.h-2\/4{
+  height: 50%;
 }
 
 .w-2\/4{
@@ -677,6 +689,11 @@ video {
   background-color: rgb(214 211 209 / var(--tw-bg-opacity));
 }
 
+.bg-red-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
 .p-10{
   padding: 2.5rem;
 }
@@ -687,6 +704,22 @@ video {
 
 .p-2\.5{
   padding: 0.625rem;
+}
+
+.p-20{
+  padding: 5rem;
+}
+
+.p-0{
+  padding: 0px;
+}
+
+.p-6{
+  padding: 1.5rem;
+}
+
+.p-16{
+  padding: 4rem;
 }
 
 .px-4{
@@ -771,9 +804,24 @@ video {
   background-color: rgb(232 121 249 / var(--tw-bg-opacity));
 }
 
+:is(.dark .dark\:bg-gray-100){
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 :is(.dark .dark\:bg-gray-400){
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-gray-800){
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-gray-300){
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:bg-gray-600){
@@ -781,9 +829,14 @@ video {
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-gray-800){
+:is(.dark .dark\:bg-gray-900){
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-gray-950){
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 7 18 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:text-fuchsia-400){
@@ -804,4 +857,68 @@ video {
 :is(.dark .dark\:hover\:bg-fuchsia-500:hover){
   --tw-bg-opacity: 1;
   background-color: rgb(217 70 239 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 768px){
+  .md\:m-20{
+    margin: 5rem;
+  }
+
+  .md\:m-10{
+    margin: 2.5rem;
+  }
+
+  .md\:m-5{
+    margin: 1.25rem;
+  }
+
+  .md\:flex{
+    display: flex;
+  }
+
+  .md\:h-screen{
+    height: 100vh;
+  }
+
+  .md\:w-screen{
+    width: 100vw;
+  }
+
+  .md\:w-full{
+    width: 100%;
+  }
+
+  .md\:w-2\/4{
+    width: 50%;
+  }
+
+  .md\:p-0{
+    padding: 0px;
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:m-20{
+    margin: 5rem;
+  }
+
+  .lg\:m-10{
+    margin: 2.5rem;
+  }
+
+  .lg\:flex{
+    display: flex;
+  }
+
+  .lg\:h-screen{
+    height: 100vh;
+  }
+
+  .lg\:w-full{
+    width: 100%;
+  }
+
+  .lg\:w-2\/4{
+    width: 50%;
+  }
 }
