@@ -37,6 +37,8 @@ translateButton.addEventListener("click", () => {
     .then((data) => {
       if (data && data.translations) {
         let detectedLang = data.translations[0].detected_source_language;
+
+        // If the original input is in English
         if (detectedLang === "EN") {
           originalLang.innerText = "ENGLISH";
 
@@ -77,6 +79,7 @@ translateButton.addEventListener("click", () => {
             });
         }
 
+        // If the original input is in Japanese
         if (detectedLang === "JA") {
           originalLang.innerText = "JAPANESE";
 
@@ -116,6 +119,7 @@ translateButton.addEventListener("click", () => {
             });
         }
 
+        // If the original input is in German
         if (detectedLang === "DE") {
           originalLang.innerText = "GERMAN";
 
