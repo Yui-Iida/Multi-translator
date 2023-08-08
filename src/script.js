@@ -3,22 +3,14 @@ import { API_KEY } from "./config.js";
 const originalLang = document.querySelector(".originalLang");
 const textarea = document.querySelector("#translationTextarea");
 const translateButton = document.querySelector(".translateButton");
-const translation1 = document.querySelector("#translation1");
-const translation2 = document.querySelector("#translation2");
-const lang1 = document.querySelector(".lang1");
-const lang2 = document.querySelector(".lang2");
-const originalContainer = document.querySelector(".originalContainer");
 const errorMessage = document.querySelector(".errorMessage");
 const switchMode = document.querySelector(".switchMode");
-const translatedContainer = document.querySelector(".translatedContainer");
+const translatedBoxes = document.querySelector("#translatedBoxes");
+
 let darkMode = false;
 
 translateButton.addEventListener("click", () => {
   const inputText = textarea.value.trim();
-  const minHeight = window.innerHeight;
-  const originalContainerHeight = originalContainer.offsetHeight;
-  const translatedContainerHeight = translatedContainer.offsetHeight;
-  const windowWidth = window.innerWidth;
 
   if (inputText === "") {
     errorMessage.textContent = "Please input original text.";
@@ -37,135 +29,63 @@ translateButton.addEventListener("click", () => {
     .then((data) => {
       if (data && data.translations) {
         let detectedLang = data.translations[0].detected_source_language;
-
-        // If the original input is in English
-        if (detectedLang === "EN") {
-          originalLang.innerText = "ENGLISH";
-
-          fetch(
-            `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
-              inputText
-            )}&target_lang=JA`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data && data.translations) {
-                translation1.innerText = data.translations[0].text;
-                lang1.innerText = "JAPANESE";
-              }
-            });
-
-          fetch(
-            `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
-              inputText
-            )}&target_lang=DE`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data && data.translations) {
-                translation2.innerText = data.translations[0].text;
-                lang2.innerText = "GERMAN";
-              }
-            })
-            .then(() => {
-              translatedContainer.style.height = "auto";
-              if (windowWidth >= 768) {
-                if (translatedContainerHeight > originalContainerHeight) {
-                  originalContainer.style.height = "auto";
-                } else {
-                  originalContainer.style.height = "100vh";
-                }
-              }
-            });
-        }
-
-        // If the original input is in Japanese
-        if (detectedLang === "JA") {
-          originalLang.innerText = "JAPANESE";
-
-          fetch(
-            `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
-              inputText
-            )}&target_lang=EN`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data && data.translations) {
-                translation1.innerText = data.translations[0].text;
-                lang1.innerText = "ENGLISH";
-              }
-            });
-
-          fetch(
-            `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
-              inputText
-            )}&target_lang=DE`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data && data.translations) {
-                translation2.innerText = data.translations[0].text;
-                lang2.innerText = "GERMAN";
-              }
-            })
-            .then(() => {
-              if (windowWidth >= 768) {
-                if (translatedContainerHeight > minHeight) {
-                  originalContainer.style.height = "auto";
-                } else {
-                  originalContainer.style.height = "100vh";
-                }
-              }
-            });
-        }
-
-        // If the original input is in German
-        if (detectedLang === "DE") {
-          originalLang.innerText = "GERMAN";
-
-          fetch(
-            `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
-              inputText
-            )}&target_lang=JP`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data && data.translations) {
-                translation1.innerText = data.translations[0].text;
-                lang1.innerText = "JAPANESE";
-              }
-            });
-
-          fetch(
-            `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
-              inputText
-            )}&target_lang=EN`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data && data.translations) {
-                translation2.innerText = data.translations[0].text;
-                lang2.innerText = "ENGLISH";
-              }
-            })
-            .then(() => {
-              if (windowWidth >= 768) {
-                if (translatedContainerHeight > minHeight) {
-                  originalContainer.style.height = "auto";
-                } else {
-                  originalContainer.style.height = "100vh";
-                }
-              }
-            });
-        }
+        fillTranslatedTexts(detectedLang, inputText);
       } else {
         alert("Translation Failed.");
       }
     })
     .catch((error) => {
-      alert("Translation Failed.");
+      console.error("Translation Failed.", error);
     });
 });
+
+function fillTranslatedTexts(detectedLang, inputText) {
+  const languages = [
+    { name: "JAPANESE", code: "JA" },
+    { name: "ENGLISH", code: "EN" },
+    { name: "GERMAN", code: "DE" },
+    { name: "PORTUGUESE", code: "PT" },
+    { name: "FRENCH", code: "FR" },
+  ];
+
+  languages.forEach((language) => {
+    if (detectedLang !== language.code) {
+      const div = document.createElement("div");
+      const h1 = document.createElement("h1");
+      const p = document.createElement("p");
+
+      div.className =
+        "output2 h-auto bg-black p-10 pb-6 rounded-md dark:bg-gray-900";
+      h1.className =
+        "lang2 text-3xl text-green-600 font-semibold font-poppins mb-4 text-center dark:text-fuchsia-400";
+      p.className =
+        "text-black font-poppins mb-8 text-white dark:text-slate-300";
+
+      div.appendChild(h1);
+      div.appendChild(p);
+
+      fetch(
+        `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
+          inputText
+        )}&target_lang=${language.code}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.translations) {
+            p.innerText = data.translations[0].text;
+            h1.innerText = language.name;
+
+            translatedBoxes.appendChild(div);
+          }
+        })
+        .catch((e) => {
+          console.error("error: ", e);
+        });
+    } else {
+      originalLang.innerText = language.name;
+    }
+  });
+}
 
 ////////////////////////////////
 // Adjust Input Height
