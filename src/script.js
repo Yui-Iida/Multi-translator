@@ -55,11 +55,10 @@ function fillTranslatedTexts(detectedLang, inputText) {
       const p = document.createElement("p");
 
       div.className =
-        "output2 h-auto bg-black p-10 pb-6 rounded-md dark:bg-gray-900";
+        "h-auto bg-black p-10 pb-6 mb-6 rounded-md dark:bg-gray-900";
       h1.className =
         "lang2 text-3xl text-green-600 font-semibold font-poppins mb-4 text-center dark:text-fuchsia-400";
-      p.className =
-        "text-black font-poppins mb-8 text-white dark:text-slate-300";
+      p.className = "font-poppins mb-8 text-white dark:text-slate-300";
 
       div.appendChild(h1);
       div.appendChild(p);
